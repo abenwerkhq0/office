@@ -6,7 +6,7 @@ self.addEventListener('push',e=>{
  e.waitUntil((async()=>{
   const cl=await clients.matchAll({type:'window',includeUncontrolled:true});
   if(cl.some(c=>c.visibilityState==='visible'&&c.focused))return; // you are already looking at the app
-  await self.registration.showNotification(d.title||'ABENWERK Office',{body:d.body||'',tag:d.tag,renotify:true,icon:'icon-192.png',badge:'icon-192.png',actions:d.actions||[],data:d});
+  await self.registration.showNotification(d.title||'ABENWERK Office',{body:d.body||'',tag:d.tag,renotify:true,requireInteraction:!!d.mention,icon:'icon-192.png',badge:'icon-192.png',actions:d.actions||[],data:d});
  })());
 });
 self.addEventListener('notificationclick',e=>{
